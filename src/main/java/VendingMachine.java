@@ -20,6 +20,11 @@ public class VendingMachine {
     public double getBalance() {
         return balance;
     }
+
+    public void setBalance(double amount){
+        balance = amount;
+    }
+
     public void withdrawBalance(double amount) throws IllegalArgumentException {
        if (balance > amount ){
 

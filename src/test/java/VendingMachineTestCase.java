@@ -30,6 +30,8 @@ public class VendingMachineTestCase {
         assertEquals(0.0,vm.getBalance());
     }
 
+
+
     @Test
     public void testWithdraw() {
         // assertEqual(Double.valueOf(0.0).compareTo(vm.getBalance()));
