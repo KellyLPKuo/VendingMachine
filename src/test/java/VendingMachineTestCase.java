@@ -51,9 +51,6 @@ public class VendingMachineTestCase {
         vm.depositBalance(1000);
         assertEquals(1000,vm.getBalance());
     }
-
-
-
 }
 
 
