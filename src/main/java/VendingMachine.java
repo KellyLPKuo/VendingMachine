@@ -39,17 +39,13 @@ public class VendingMachine {
         return balance;
     }
 
-    public void setBalance(double amount){
-        balance = amount;
-    }
-
     public void withdrawBalance(double amount) throws IllegalArgumentException {
        if (balance > amount ){
 
            balance -=  amount;
        }
        else{
-           throw new IllegalArgumentException("Insufficient money");
+           throw new IllegalArgumentException("Insufficient fund");
        }
     }
 
@@ -70,10 +66,11 @@ public class VendingMachine {
             throw new IllegalArgumentException("No such item");
         item = items.get(itemCode);
         if(item.getPrice() > customerBalance){
-            throw new IllegalArgumentException("Insufficient money");
+            throw new IllegalArgumentException("Insufficient fund");
         }
         customerBalance-= item.getPrice();
        balance += item.getPrice();
+       items.remove(item.getCode());
         return item;
     }
    public double getChange(){

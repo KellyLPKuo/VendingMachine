@@ -5,6 +5,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,15 +35,14 @@ public class VendingMachineTestCase {
     }
     @Test
     public void testGetBalance() {
-        assertEquals(0.0,vm.getBalance());
+        vm.depositBalance(0.0);
+        assertEquals(0.0, vm.getBalance());
     }
-
     @Test
-    public void testSetBalance(){
-        vm.setBalance(500);
-        assertEquals(500,vm.getBalance());
+    public void testDepositBalance() {
+        vm.depositBalance(1000);
+        assertEquals(1000,vm.getBalance());
     }
-
 
     @Test
     public void testWithdraw() {
@@ -53,14 +53,8 @@ public class VendingMachineTestCase {
 
     @Test
     public void testWithdrawGreaterThanBalance() {
-        vm.setBalance(500);
+        vm.depositBalance(500);
         assertThrows(IllegalArgumentException.class,() -> vm.withdrawBalance(1000));
-    }
-
-    @Test
-    public void testDepositBalance() {
-        vm.depositBalance(1000);
-        assertEquals(1000,vm.getBalance());
     }
 
     @Test
@@ -104,6 +98,10 @@ public class VendingMachineTestCase {
         assertNotEquals(insertedMoney, vm.getCustomerBalance());
         assertEquals(insertedMoney - item1.getPrice(), vm.getCustomerBalance());
         assertEquals(balanceBeforeAdd + item1.getPrice(),vm.getBalance());
+        Optional<Item> boughtItem= vm.getAvailableItems().stream()
+                .filter(i -> item1.getCode().equals(i.getCode()))
+                .findAny();
+        assertFalse(boughtItem.isPresent());
     }
 
       @Test

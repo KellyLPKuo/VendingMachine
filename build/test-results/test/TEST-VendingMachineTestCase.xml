@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="VendingMachineTestCase" tests="16" skipped="0" failures="0" errors="0" timestamp="2021-04-29T22:25:07" hostname="LTUS148695" time="0.135">
+<testsuite name="VendingMachineTestCase" tests="15" skipped="0" failures="0" errors="0" timestamp="2021-04-29T22:54:10" hostname="LTUS148695" time="0.096">
   <properties/>
-  <testcase name="testAddItem()" classname="VendingMachineTestCase" time="0.071"/>
-  <testcase name="testCustomerBalanceIsLessThan0()" classname="VendingMachineTestCase" time="0.01"/>
-  <testcase name="testBuyItemWithChange()" classname="VendingMachineTestCase" time="0.005"/>
-  <testcase name="testBuyItemWithInvalidCode()" classname="VendingMachineTestCase" time="0.005"/>
-  <testcase name="testDuplicateCodeItem()" classname="VendingMachineTestCase" time="0.001"/>
-  <testcase name="testDepositBalance()" classname="VendingMachineTestCase" time="0.002"/>
-  <testcase name="testWithdraw()" classname="VendingMachineTestCase" time="0.001"/>
+  <testcase name="testAddItem()" classname="VendingMachineTestCase" time="0.025"/>
+  <testcase name="testCustomerBalanceIsLessThan0()" classname="VendingMachineTestCase" time="0.004"/>
+  <testcase name="testBuyItemWithChange()" classname="VendingMachineTestCase" time="0.003"/>
+  <testcase name="testBuyItemWithInvalidCode()" classname="VendingMachineTestCase" time="0.002"/>
+  <testcase name="testDuplicateCodeItem()" classname="VendingMachineTestCase" time="0.003"/>
+  <testcase name="testDepositBalance()" classname="VendingMachineTestCase" time="0.001"/>
+  <testcase name="testWithdraw()" classname="VendingMachineTestCase" time="0.002"/>
   <testcase name="testBuyItem()" classname="VendingMachineTestCase" time="0.003"/>
   <testcase name="testGetBalance()" classname="VendingMachineTestCase" time="0.001"/>
-  <testcase name="testWithdrawGreaterThanBalance()" classname="VendingMachineTestCase" time="0.002"/>
-  <testcase name="testGetAvailableItemsInStock()" classname="VendingMachineTestCase" time="0.003"/>
-  <testcase name="testCancelPurchasedItem()" classname="VendingMachineTestCase" time="0.004"/>
-  <testcase name="checkEmptyVendingMachine()" classname="VendingMachineTestCase" time="0.001"/>
-  <testcase name="testCustomerBalance()" classname="VendingMachineTestCase" time="0.001"/>
-  <testcase name="testBuyItemWithSmallerMoney()" classname="VendingMachineTestCase" time="0.003"/>
-  <testcase name="testSetBalance()" classname="VendingMachineTestCase" time="0.001"/>
+  <testcase name="testWithdrawGreaterThanBalance()" classname="VendingMachineTestCase" time="0.001"/>
+  <testcase name="testGetAvailableItemsInStock()" classname="VendingMachineTestCase" time="0.018"/>
+  <testcase name="testCancelPurchasedItem()" classname="VendingMachineTestCase" time="0.006"/>
+  <testcase name="checkEmptyVendingMachine()" classname="VendingMachineTestCase" time="0.003"/>
+  <testcase name="testCustomerBalance()" classname="VendingMachineTestCase" time="0.003"/>
+  <testcase name="testBuyItemWithSmallerMoney()" classname="VendingMachineTestCase" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
