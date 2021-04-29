@@ -5,8 +5,10 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class VendingMachineTestCase {
     VendingMachine vm;
@@ -20,16 +22,26 @@ public class VendingMachineTestCase {
    }
     @Test
     public void testAddItem(){
-        vm.addItem(new Item("orange",1.00, 1));
+        vm.addItem(new Item("orange",1.00,  "R1C3"));
         assertEquals(1, vm.getSize());
     }
 
+    @Test
+    public void testDuplicateCodeItem(){
+        vm.addItem(new Item("orange",1.00,  "R1C3"));
+        assertThrows(IllegalArgumentException.class,() ->vm.addItem(new Item("apple",1.70,  "R1C3")));
+    }
     @Test
     public void testGetBalance() {
       // assertEqual(Double.valueOf(0.0).compareTo(vm.getBalance()));
         assertEquals(0.0,vm.getBalance());
     }
 
+    @Test
+    public void testSetBalance(){
+        vm.setBalance(500);
+        assertEquals(500,vm.getBalance());
+    }
 
 
     @Test
@@ -43,16 +55,83 @@ public class VendingMachineTestCase {
     @Test
     public void testWithdrawGreaterThanBalance() {
         vm.setBalance(500);
-
         assertThrows(IllegalArgumentException.class,() -> vm.withdrawBalance(1000));
     }
 
     @Test
     public void testDepositBalance() {
-
         vm.depositBalance(1000);
         assertEquals(1000,vm.getBalance());
     }
+
+    @Test
+    public void testGetAvailableItemsInStock(){
+        vm.addItem(new Item("orange",1.00,  "R1C3"));
+        vm.addItem(new Item("apple",2.00,  "R2C3"));
+        vm.addItem(new Item("avocado",1.50,  "R3C3"));
+        Item item1= new Item("pear",1.70,  "R4C3");
+        vm.addItem(item1);
+        List<Item> expected=        vm.getAvailableItems();
+        Optional<Item> actualItem1 = expected.stream().filter(e-> e.getCode().equals(item1.getCode())).findAny();
+        assertEquals(4, expected.size());
+        assertTrue(actualItem1.isPresent());
+        assertEquals(item1.getItemName(), actualItem1.get().getItemName());
+        assertEquals(item1.getPrice(), actualItem1.get().getPrice());
+
+    }
+
+    @Test
+    public void testCustomerBalance(){
+        vm.addCustomerBalance(20);
+        assertEquals(20, vm.getCustomerBalance());
+
+    }
+
+    @Test
+    public void testCustomerBalanceIsLessThan0(){
+        assertThrows(IllegalArgumentException.class,() -> vm.addCustomerBalance(-1000));
+    }
+
+    @Test
+    public void testBuyItem(){
+        Item item1= new Item("orange",1.00,  "R1C3");
+        vm.addItem(item1);
+        vm.addItem(new Item("apple",2.00,  "R2C3"));
+        vm.addItem(new Item("avocado",1.50,  "R3C3"));
+        double insertedMoney=20;
+        vm.addCustomerBalance(insertedMoney);
+        double balanceBeforeAdd = vm.getBalance();
+        vm.buyItem("R1C3");
+        assertNotEquals(insertedMoney, vm.getCustomerBalance());
+        assertEquals(insertedMoney - item1.getPrice(), vm.getCustomerBalance());
+        assertEquals(balanceBeforeAdd + item1.getPrice(),vm.getBalance());
+    }
+
+      @Test
+    public void testBuyItemWithSmallerMoney(){
+        Item item1= new Item("orange",2.00,  "R1C3");
+        vm.addItem(item1);
+        vm.addItem(new Item("apple",2.00,  "R2C3"));
+        vm.addItem(new Item("avocado",1.50,  "R3C3"));
+        double insertedMoney=1;
+        vm.addCustomerBalance(insertedMoney);
+        double balanceBeforeAdd = vm.getBalance();
+        assertThrows(IllegalArgumentException.class,() ->        vm.buyItem("R1C3"));
+    }
+
+    @Test
+    public void testBuyItemWithInvalidCode(){
+        Item item1= new Item("orange",2.00,  "R1C3");
+        vm.addItem(item1);
+        vm.addItem(new Item("apple",2.00,  "R2C3"));
+        vm.addItem(new Item("avocado",1.50,  "R3C3"));
+        double insertedMoney=1;
+        vm.addCustomerBalance(insertedMoney);
+        double balanceBeforeAdd = vm.getBalance();
+        assertThrows(IllegalArgumentException.class,() ->        vm.buyItem("R924597"));
+    }
+
+
 }
 
 

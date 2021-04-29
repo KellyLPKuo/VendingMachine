@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="VendingMachineTestCase" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-04-27T23:08:58" hostname="LTUS148695" time="0.07">
+<testsuite name="VendingMachineTestCase" tests="14" skipped="0" failures="0" errors="0" timestamp="2021-04-28T23:59:57" hostname="LTUS148695" time="0.139">
   <properties/>
-  <testcase name="testAddItem()" classname="VendingMachineTestCase" time="0.052"/>
-  <testcase name="testDepositBalance()" classname="VendingMachineTestCase" time="0.003"/>
+  <testcase name="testAddItem()" classname="VendingMachineTestCase" time="0.065"/>
+  <testcase name="testCustomerBalanceIsLessThan0()" classname="VendingMachineTestCase" time="0.01"/>
+  <testcase name="testBuyItemWithInvalidCode()" classname="VendingMachineTestCase" time="0.004"/>
+  <testcase name="testDuplicateCodeItem()" classname="VendingMachineTestCase" time="0.004"/>
+  <testcase name="testDepositBalance()" classname="VendingMachineTestCase" time="0.004"/>
   <testcase name="testWithdraw()" classname="VendingMachineTestCase" time="0.001"/>
+  <testcase name="testBuyItem()" classname="VendingMachineTestCase" time="0.003"/>
   <testcase name="testGetBalance()" classname="VendingMachineTestCase" time="0.001"/>
-  <testcase name="testWithdrawGreaterThanBalance()" classname="VendingMachineTestCase" time="0.004"/>
+  <testcase name="testWithdrawGreaterThanBalance()" classname="VendingMachineTestCase" time="0.002"/>
+  <testcase name="testGetAvailableItemsInStock()" classname="VendingMachineTestCase" time="0.015"/>
   <testcase name="checkEmptyVendingMachine()" classname="VendingMachineTestCase" time="0.001"/>
+  <testcase name="testCustomerBalance()" classname="VendingMachineTestCase" time="0.003"/>
+  <testcase name="testBuyItemWithSmallerMoney()" classname="VendingMachineTestCase" time="0.002"/>
+  <testcase name="testSetBalance()" classname="VendingMachineTestCase" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
