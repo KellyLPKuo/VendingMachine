@@ -29,11 +29,11 @@ public class VendingMachineTestCase {
     @Test
     public void testDuplicateCodeItem(){
         vm.addItem(new Item("orange",1.00,  "R1C3"));
-        assertThrows(IllegalArgumentException.class,() ->vm.addItem(new Item("apple",1.70,  "R1C3")));
+        assertThrows(IllegalArgumentException.class,
+                () ->vm.addItem(new Item("apple",1.70,  "R1C3")));
     }
     @Test
     public void testGetBalance() {
-      // assertEqual(Double.valueOf(0.0).compareTo(vm.getBalance()));
         assertEquals(0.0,vm.getBalance());
     }
 
@@ -46,7 +46,6 @@ public class VendingMachineTestCase {
 
     @Test
     public void testWithdraw() {
-        // assertEqual(Double.valueOf(0.0).compareTo(vm.getBalance()));
         vm.depositBalance(500);
         vm.withdrawBalance(100);
         assertEquals(400.00,vm.getBalance());
@@ -131,6 +130,29 @@ public class VendingMachineTestCase {
         assertThrows(IllegalArgumentException.class,() ->        vm.buyItem("R924597"));
     }
 
+    @Test
+    public void testBuyItemWithChange(){
+        Item item1= new Item("orange",2.00,  "R1C3");
+        vm.addItem(item1);
+        vm.addItem(new Item("apple",2.00,  "R2C3"));
+        vm.addItem(new Item("avocado",1.50,  "R3C3"));
+        double insertedMoney=5;
+        vm.addCustomerBalance(insertedMoney);
+        double balanceBeforeAdd = vm.getBalance();
+       assertEquals(item1,vm.buyItem(item1.getCode()));
+        assertEquals(vm.getChange(),insertedMoney - item1.getPrice());
+    }
+
+    @Test
+    public void testCancelPurchasedItem(){
+        Item item1= new Item("orange",2.00,  "R1C3");
+        vm.addItem(item1);
+        vm.addItem(new Item("apple",2.00,  "R2C3"));
+        double insertedMoney=5;
+        vm.addCustomerBalance(insertedMoney);
+        double balanceBeforeAdd = vm.getBalance();
+       assertEquals(insertedMoney, vm.cancelPurchased());
+    }
 
 }
 

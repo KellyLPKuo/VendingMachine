@@ -64,7 +64,7 @@ public class VendingMachine {
        return new ArrayList<Item>( items.values());
     }
 
-    public void buyItem(String itemCode) throws IllegalArgumentException  {
+    public Item buyItem(String itemCode) throws IllegalArgumentException  {
         Item item=null ;
         if(!items.containsKey(itemCode))
             throw new IllegalArgumentException("No such item");
@@ -74,5 +74,14 @@ public class VendingMachine {
         }
         customerBalance-= item.getPrice();
        balance += item.getPrice();
+        return item;
     }
+   public double getChange(){
+        return getCustomerBalance();
+   }
+
+   public double cancelPurchased(){
+        return getChange();
+   }
+
 }
